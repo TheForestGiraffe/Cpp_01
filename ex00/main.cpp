@@ -6,7 +6,7 @@
 /*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 00:18:55 by pecavalc          #+#    #+#             */
-/*   Updated: 2026/04/12 00:31:28 by pecavalc         ###   ########.fr       */
+/*   Updated: 2026/04/12 00:55:30 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 #include <string>
 
 int main( void ) {
-    Zombie* zombie = Zombie::newZombie( std::string("Aroldo") );
-    Zombie::randomChump( std::string("Zeca"));
+    Zombie* zombie = newZombie(std::string("Aroldo"));
+    zombie->announce();
     delete(zombie);
+    
+    randomChump(std::string("Zeca"));
+    
     return 0;
 }
