@@ -6,14 +6,14 @@
 #    By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/12 00:16:04 by pecavalc          #+#    #+#              #
-#    Updated: 2026/04/13 01:14:15 by pecavalc         ###   ########.fr        #
+#    Updated: 2026/04/13 01:07:22 by pecavalc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex01
+NAME = ex02
 
-SRC = Zombie.cpp zombieHorde.cpp main.cpp
-OBJ = Zombie.o zombieHorde.o main.o
+SRC = main.cpp
+OBJ = main.o
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
