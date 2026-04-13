@@ -6,7 +6,7 @@
 /*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 23:37:35 by pecavalc          #+#    #+#             */
-/*   Updated: 2026/04/12 00:55:26 by pecavalc         ###   ########.fr       */
+/*   Updated: 2026/04/13 01:26:33 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ private:
 };
 
 Zombie* newZombie(std::string name);
-void randomChump(std:: string name);
+void randomChump(std::string name);
 
 #endif
