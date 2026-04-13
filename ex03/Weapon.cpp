@@ -6,14 +6,14 @@
 /*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 01:48:17 by pecavalc          #+#    #+#             */
-/*   Updated: 2026/04/13 02:00:45 by pecavalc         ###   ########.fr       */
+/*   Updated: 2026/04/13 03:16:32 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Weapon.hpp"
 #include <string>
 
-Weapon::Weapon() {}
+Weapon::Weapon(const std::string& type) : type_(type) {}
 
 Weapon::~Weapon() {}
 

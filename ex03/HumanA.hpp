@@ -6,7 +6,7 @@
 /*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 02:00:53 by pecavalc          #+#    #+#             */
-/*   Updated: 2026/04/13 02:12:41 by pecavalc         ###   ########.fr       */
+/*   Updated: 2026/04/13 03:06:55 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 #include <string>
 
 class HumanA {
- public:
-  HumanA(Weapon& weapon);
-  ~HumanA();
+  public:
+    HumanA(const std::string& name, Weapon& weapon);
+    ~HumanA();
 
-  void attack() const;
+    void attack() const;
 
- private:
-  Weapon weapon_;
-  std::string name_;
+  private:
+    std::string name_;
+    Weapon& weapon_;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 01:24:42 by pecavalc          #+#    #+#             */
-/*   Updated: 2026/04/13 01:56:39 by pecavalc         ###   ########.fr       */
+/*   Updated: 2026/04/13 02:50:06 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@
 #include <string>
 
 class Weapon {
- public:
-  const std::string& getType() const;
-  void setType(const std::string& type);
+  public:
+    Weapon(const std::string& type);
+    ~Weapon();
 
- private:
-  std::string type_;
+    const std::string& getType() const;
+    void setType(const std::string& type);
+
+  private:
+    std::string type_;
 };
 
 #endif

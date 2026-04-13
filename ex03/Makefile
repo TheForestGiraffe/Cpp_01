@@ -6,14 +6,14 @@
 #    By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/12 00:16:04 by pecavalc          #+#    #+#              #
-#    Updated: 2026/04/13 01:24:17 by pecavalc         ###   ########.fr        #
+#    Updated: 2026/04/13 03:09:56 by pecavalc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ex03
 
 SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
-OBJ = main.o
+OBJ = main.o Weapon.o HumanA.o HumanB.o
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

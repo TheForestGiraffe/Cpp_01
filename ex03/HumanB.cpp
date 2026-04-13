@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 02:04:01 by pecavalc          #+#    #+#             */
-/*   Updated: 2026/04/13 03:12:40 by pecavalc         ###   ########.fr       */
+/*   Updated: 2026/04/13 03:14:35 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#include "HumanB.hpp"
 #include <iostream>
 
-HumanA::HumanA(const std::string& name, Weapon& weapon)
-    : name_(name), weapon_(weapon) {};
+HumanB::HumanB(const std::string& name) : name_(name), weapon_(NULL) {}
 
-HumanA::~HumanA() {};
+HumanB::~HumanB() {}
 
-void HumanA::attack() const {
- std::cout << name_ << " attacks with their " << weapon_.getType() << "\n";
+void HumanB::setWeapon(Weapon& weapon) {
+  weapon_ = &weapon;
+}
+
+void HumanB::attack() const {
+  if (weapon_)
+    std::cout << name_ << " attacks with their " << weapon_->getType() << "\n";
 }
