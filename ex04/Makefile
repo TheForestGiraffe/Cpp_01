@@ -10,30 +10,29 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME:= ex04
+NAME:= replace
 SRC:= main.cpp
 OBJ:= $(SRC:.cpp=.o)
 DEP:= $(OBJ:.o=.d)
 
 CXX:= c++
-CXXFLAGS:= -Wall -Wextra -Werror -MMD -MP -std=c++98
+CXXFLAGS:= -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+	@make clean --no-print-directory
 
 %.o: %.cpp
 	$(CC) $(CXXFLAGS) -c $< -o $@
 
--include $(DEP)
-
 clean:
-	rm -f $(DEP)
-	rm -f $(OBJ)
+	@rm -f $(DEP)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
