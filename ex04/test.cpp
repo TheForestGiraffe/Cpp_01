@@ -6,41 +6,42 @@
 /*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 21:16:36 by pecavalc          #+#    #+#             */
-/*   Updated: 2026/04/14 21:35:15 by pecavalc         ###   ########.fr       */
+/*   Updated: 2026/04/14 21:59:21 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Simple test harness for replace:
-   - Runs ../replace on six input files with given s1/s2
-   - Compares output byte-by-byte with expected files
-   - Runs ../replace with non-existent file as argument
+   - Creates six input files
+   - Runs ./replace on them with given s1/s2
+   - Compares output file with expected content
+   - Runs ./replace with non-existent file as argument
    - Reports FAIL per case, or "All tests passed" if all succeed */
 
+#include <cstdio>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
-#include <iterator>
 #include <string>
 
-// Load input and input.replace files and compare them byte-by-byte
-static bool same(const std::string& path_a, const std::string& path_b) {
-  std::ifstream f1(path_a.c_str(), std::ios::binary);
-  std::ifstream f2(path_b.c_str(), std::ios::binary);
-
-  if (!f1.is_open() || !f2.is_open())
+static bool write_file(const std::string& path, const std::string& content) {
+  std::ofstream file(path.c_str(), std::ios::binary);
+  if (!file.is_open())
     return false;
+  file << content;
+  return file.good();
+}
 
-  char c1, c2;
-  while (true) {
-    f1.get(c1);
-    f2.get(c2);
+static bool same_as_string(const std::string& path,
+                           const std::string& expected) {
+  std::ifstream file(path.c_str(), std::ios::binary);
+  std::string got;
+  char c;
 
-    if (f1.eof() && f2.eof())
-      return true;
-
-    if (f1.eof() || f2.eof() || c1 != c2)
-      return false;
-  }
+  if (!file.is_open())
+    return false;
+  while (file.get(c))
+    got += c;
+  return got == expected;
 }
 
 int main() {
@@ -55,26 +56,53 @@ int main() {
     "two_line_breaks_at_the_end"
   };
 
+  std::string inputs[] = {
+    "",
+    "This is aaaaaa line\n",
+    "\nhello line",
+    "this file",
+    "first sentence\n\nsecond sentence\n",
+    "first line\nsecond line\n\n"
+  };
+
   std::string s1[] = {"", "a", "line", "file", "sentence", "line"};
   std::string s2[] = {"X", "aa", "", "DOC", "phrase", "item"};
 
-  for (int i = 0; i < 6; i++) {
-    std::string in = "files/" + names[i];
-    std::string out = in + ".replace";
-    std::string exp = "expected/" + names[i] + ".replace";
+  std::string expected[] = {
+    "",
+    "This is aaaaaaaaaaaa line\n",
+    "\nhello ",
+    "this DOC",
+    "first phrase\n\nsecond phrase\n",
+    "first item\nsecond item\n\n"
+  };
 
+  for (int i = 0; i < 6; i++) {
+    std::string in = names[i];
+    std::string out = in + ".replace";
+
+    std::remove(in.c_str());
     std::remove(out.c_str());
 
-    std::string cmd = "../replace \"" + in + "\" \"" + s1[i]
+    if (!write_file(in, inputs[i])) {
+      std::cout << "FAIL: could not create input file for " << names[i] << "\n";
+      fails++;
+      continue;
+    }
+
+    std::string cmd = "./replace \"" + in + "\" \"" + s1[i]
                       + "\" \"" + s2[i] + "\"";
 
-    if (std::system(cmd.c_str()) != 0 || !same(out, exp)) {
+    if (std::system(cmd.c_str()) != 0 || !same_as_string(out, expected[i])) {
       std::cout << "FAIL: " << names[i] << "\n";
       fails++;
     }
+
+    std::remove(in.c_str());
+    std::remove(out.c_str());
   }
 
-  if (std::system("../replace does_not_exist x y > /dev/null 2>&1") == 0) {
+  if (std::system("./replace does_not_exist x y > /dev/null 2>&1") == 0) {
     std::cout << "FAIL: file not found\n";
     fails++;
   }

@@ -1,9 +1,0 @@
-This is a test file where a will be replaced by aa.
-
-a
-aa
-aaa
-aaaa
-ada
-
-It catches the case where the position of find is not properly advanced

@@ -3,17 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pecavalc <pecavalc@student.42berlin.d      +#+  +:+       +#+         #
+#    By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/14 10:29:12 by pecavalc          #+#    #+#              #
-#    Updated: 2026/04/14 11:55:32 by pecavalc         ###   ########.fr        #
+#    Updated: 2026/04/14 22:00:27 by pecavalc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME:= replace
 SRC:= main.cpp
 OBJ:= $(SRC:.cpp=.o)
-DEP:= $(OBJ:.o=.d)
 
 CXX:= c++
 CXXFLAGS:= -Wall -Wextra -Werror -std=c++98
@@ -28,12 +27,27 @@ $(NAME): $(OBJ)
 	$(CC) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(DEP)
 	@rm -f $(OBJ)
+	@rm -f $(TEST_OBJ)
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f $(TEST_NAME)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+# **************************************************************************** #
+#                              UNIT TEST                                      #
+# **************************************************************************** #
+
+TEST_NAME:= test_replace
+TEST_SRC:= test.cpp
+TEST_OBJ:= test.o
+
+test: $(NAME)
+	$(CXX) $(CXXFLAGS) $(TEST_SRC) -o $(TEST_NAME)
+	@make clean --no-print-directory
+	./test_replace
