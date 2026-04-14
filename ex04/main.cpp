@@ -6,7 +6,7 @@
 /*   By: pecavalc <pecavalc@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 10:25:15 by pecavalc          #+#    #+#             */
-/*   Updated: 2026/04/14 13:11:06 by pecavalc         ###   ########.fr       */
+/*   Updated: 2026/04/14 15:44:53 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,48 @@
 #include <fstream>
 #include <iostream>
 
-static int validate_input(int argc, char **argv) {
-  (void)argv;
-  
-  if (argc != 4) {
-    std::cout << "Invalid number of arguments.\n";
-    return 1;
-  }
-  return 0;
-}
-
 int main(int argc, char **argv) {
-  if (validate_input(argc, argv))
+  if(argc != 4) {
+    std::cerr << "Invalid number of arguments.\n";
     return 1;
-
-  std::ifstream file(argv[1]);
-  if (!file) {
-    std::cout << "Could not open file.\n";
+  }
+  
+  std::ifstream in_file(argv[1]);
+  if(!in_file) {
+    std::cerr << "Could not open file.\n";
     return 1;
   }
 
+  std::string s1 = argv[2];
+  std::string s2 = argv[3];
   std::string line;
-  if (!std::getline(file, line)) {
+  std::string::size_type line_pos;
+  std::string out_filename = std::string(argv[1]) + ".replace";
+  std::ofstream out_file(out_filename.c_str());
+
+  while(std::getline(in_file, line)) {
+    line_pos = 0;
+    while(true) {
+      line_pos = line.find(s1, line_pos);
+      if(line_pos != std::string::npos) {
+        line.erase(line_pos, s1.length());
+        line.insert(line_pos, s2);
+        line_pos += s2.length();
+      }
+      else{
+        out_file << line + '\n';
+        break ;
+      }
+    }
+  }
+
+  if(in_file.eof())
+    return 0;
+  else {
     std::cout << "Could not read line from file.\n";
     return 1;
   }
 
-  // TODO: find
-
-  return 0;
+  in_file.close();
+  out_file.close();
 }
