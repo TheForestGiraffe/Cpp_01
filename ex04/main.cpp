@@ -26,19 +26,18 @@ int main(int argc, char **argv) {
     return 1;
   }
 
+  std::string out_filename = std::string(argv[1]) + ".replace";
+  std::ofstream out_file(out_filename.c_str());
+  if (!out_file) {
+    std::cerr << "Could not create " << out_filename << " file.";
+    return 1;
+  }
+
   std::string s1 = argv[2];
   std::string s2 = argv[3];
 
   std::string line;
   std::string::size_type line_pos;
-  
-  std::string out_filename = std::string(argv[1]) + ".replace";
-  std::ofstream out_file(out_filename.c_str());
-  if (!out_file) {
-    in_file.close();
-    std::cerr << "Could not create " << out_filename << " file.";
-    return 1;
-  }
 
   while (std::getline(in_file, line)) {
     if (s1.empty()) {
