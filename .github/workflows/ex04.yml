@@ -1,0 +1,19 @@
+name: Test ex04 (replace)
+
+on:
+  push:
+    paths:
+      - "CPP_01/ex04/**"
+      - ".github/workflows/ex04.yml"
+
+jobs:
+  test-ex04:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Build and run ex04 tests
+        working-directory: CPP_01/ex04
+        run: make test
