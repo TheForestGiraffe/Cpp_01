@@ -29,10 +29,11 @@ $(NAME): $(OBJ)
 -include $(DEP)
 
 clean:
-	rm $(OBJ)
+	rm -f $(DEP)
+	rm -f $(OBJ)
 
 fclean: clean
-	rm $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
