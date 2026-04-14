@@ -15,5 +15,5 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Build and run ex04 tests
-        working-directory: CPP_01/ex04
+        working-directory: ex04
         run: make test
