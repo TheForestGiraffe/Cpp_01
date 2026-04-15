@@ -3,6 +3,8 @@
 C++ Module 01 from the 42 curriculum.  
 Focus on memory management, references, pointers, and OOP in C++98.
 
+The project instructions can be found under the `/docs` folder.
+
 ## Exercises
 - ex00 → Zombie class  
 - ex01 → Zombie horde (dynamic allocation)  
