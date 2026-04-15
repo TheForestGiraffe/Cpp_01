@@ -14,8 +14,10 @@ Focus on memory management, references, pointers, and OOP in C++98.
 
 ## Build & Run
 From each ex folder:
+```c
 make
 ./<executable>
+```
 
 ## Notes
 - Standard: C++98  
