@@ -6,7 +6,7 @@
 #    By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/14 10:29:12 by pecavalc          #+#    #+#              #
-#    Updated: 2026/04/14 22:00:27 by pecavalc         ###   ########.fr        #
+#    Updated: 2026/04/15 02:35:49 by pecavalc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
-	@make clean --no-print-directory
 
 %.o: %.cpp
 	$(CC) $(CXXFLAGS) -c $< -o $@
