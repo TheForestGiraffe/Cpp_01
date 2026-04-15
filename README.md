@@ -10,18 +10,13 @@ The project instructions can be found under the `/docs` folder.
 - ex01 → Zombie horde (dynamic allocation)  
 - ex02 → References vs pointers  
 - ex03 → Weapon & humans  
-- ex04 → File replace  
+- ex04 → File replace (with GitHub Actions CI workflow)
 - ex05 → Harl 2.0  
 - ex06 → Harl filter (switch)
 
 ## Build & Run
 From each ex folder:
-```c
+```bash
 make
 ./<executable>
 ```
-
-## Notes
-- Standard: C++98  
-- Flags: -Wall -Wextra -Werror  
-- 42 Berlin project
