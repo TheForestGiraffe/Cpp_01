@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex01
+NAME = ex00
 
 SRC = Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
 OBJ = Zombie.o newZombie.o randomChump.o main.o
